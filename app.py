@@ -11,7 +11,7 @@ from sqlalchemy import create_engine, desc
 #################################################
 # Flask Setup
 #################################################
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__)
 
 # Create a list to hold our data
 # engine= create_engine("sqlite:///heatmap.sqlite")
@@ -28,6 +28,11 @@ app = Flask(__name__, template_folder='templates')
 @app.route("/")
 def homepage():
 	return render_template("index.html")
+
+
+@app.route("/map2")
+def homepage2():
+	return render_template("index_2.html")
 
 # @app.route('/names')
 
