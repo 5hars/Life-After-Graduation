@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Charts using Chart.js Library</title>
+        <!-- import plugin script -->
+        <script src='Chart.min.js'></script>
+<!--         <script type="text/javascript" src="Chart.PieceLabel.js"></script> -->
+    </head>
+    <body>
+        <!-- <div style="position:absolute; top:60px; left:10px; width:300px; height:500px;">
+            <canvas id="house_count"></canvas> -->
+        <!-- line chart canvas element -->
+        <canvas id="house_count" width="600" height="300"></canvas>
+        <!-- pie chart canvas element -->
+        <canvas id="job_count" width="600" height="300"></canvas>
+        <!-- bar chart canvas element -->
+        <canvas id="med_house_price" width="600" height="300"></canvas>
+        <!-- multiple line chart canvas element -->
+        <canvas id="recreation" width="600" height="300"></canvas>
+        <script>
+         
+
+            // line chart data
+            var cityData = {
+                labels : ["Austin","Boise","Boston","Charlotte","Colorado","Dallas", "Denver", "De Moines", "Fayettsville", "Grand Rapids", "Houston", "Madison", "Minneapolis", "Nashville", "Raleigh", "Salt Lake City", "San Francisco","San Jose", "Seattle", "WashingtonDC"],
+                datasets : [
+                {
+                    fillColor : "rgba(172,194,132,0.4)",
+                    strokeColor : "#ACC26D",
+                    pointColor : "#fff",
+                    pointStrokeColor : "#9DB86D",
+                    data : [6357, 2015, 7784, 7230, 1435, 17395, 4417, 2800, 2405, 1723, 22785, 1689, 7262, 8097, 5632, 2034, 3110, 3130, 16695]
+                }
+            ]
+            }
+
+
+
+            // get line chart canvas
+            var houseCount = document.getElementById('house_count').getContext('2d');
+            // draw line chart
+            var house_count = new Chart(houseCount, {
+                type:'line', 
+                data:{
+                    datasets:[{
+                        backgroundColor: "#008080",
+                        data:[6357,2015,7784,7230, 1435, 17395, 4417, 2899, 2405, 1723, 22785, 1689, 7262, 8097, 5032, 2034, 3110, 676, 3130, 16695],
+                        label:"Available Houses",
+                        borderColor: "red"
+
+                    }],
+                    labels:["Austin","Boise","Boston","Charlotte","Colorado","Dallas", "Denver", "De Moines", "Fayettsville", "Grand Rapids", "Houston", "Madison", "Minneapolis", "Nashville", "Raleigh", "Salt Lake City", "San Francisco", "San Jose", "Seattle", "WashingtonDC"]
+                }, 
+                options: {
+                  legend: { display: false },
+                  title: {
+                    display: true,
+                    text: 'Available Houses in Various Cities'
+                  },
+                  scales: {
+                        yAxes: [{
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'No of Available Houses'
+                          }
+                        }]
+                      }
+                }
+
+                });
+
+            // pie chart options
+            var pieOptions = {
+                 segmentShowStroke : false,
+                 animateScale : true
+            };
+            // get pie chart canvas
+            var jobCount= document.getElementById("job_count").getContext("2d");
+            // draw pie chart
+            var job_count = new Chart(jobCount, {
+                type:'doughnut',
+                data:{
+                    labels:["Austin","Boise","Boston","Charlotte","Colorado","Dallas", "Denver", "De Moines", "Fayettsville", "Grand Rapids", "Houston", "Madison", "Minneapolis", "Nashville", "Raleigh", "Salt Lake City", "San Francisco","San Jose", "Seattle", "WashingtonDC"],
+                    datasets:[{
+                        data:[129,12, 608, 99, 16, 367, 87, 30, 5, 15, 539, 87, 75, 35, 79, 29, 1366,  452, 661, 261],
+                        label:"Job Count",
+                        backgroundColor : ["#e6194b","#3cb44b","#ffe119", "#0082c8", "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#d2f53c", "#fabebe", "#008080", "#e6beff", "#aa6e28", "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000000"],
+                        strokeColor : "#48A4D1"
+
+                }]}, 
+                options: {
+                      title: {
+                        display: true,
+                        text: 'No of Jobs in Various Cities'
+                        },
+                      tooltips: {
+                          mode: 'nearest'
+                          }
+      
+                      }
+                      // legend: { display: false }
+                    
+
+            });
+
+            // bar chart data
+            var barData = {
+                labels : ["Austin","Boise","Boston","Charlotte","Colorado","Dallas", "Denver", "De Moines", "Fayettsville", "Grand Rapids", "Houston", "Madison", "Minneapolis", "Nashville", "Raleigh", "Salt Lake City", "San Francisco","San Jose", "Seattle", "WashingtonDC"],
+                datasets : [
+                    {
+                        backgroundColor : ["#e6194b","#3cb44b","#ffe119", "#0082c8", "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#d2f53c", "#fabebe", "#008080", "#e6beff", "#aa6e28", "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000000"],
+                        strokeColor : "#48A4D1",
+                        data : [363990, 312520, 499950, 328241, 402500, 349950, 543050, 291265, 272549, 267500, 321446, 313875, 362000, 359950, 337614, 381050, 899050, 1199938, 527520, 425000],
+                        label: "Median House Price($)"
+                    }
+
+                ]
+            }
+            // get bar chart canvas
+            var medHouseprice = document.getElementById("med_house_price").getContext("2d");
+            // draw bar chart for bars in various cities
+            var med_house_price = new Chart(medHouseprice, {
+                type:'bar',
+                data: barData,
+                options: {
+                      title: {
+                        display: true,
+                        text: 'Median House Prices in Dollars'
+                      },
+                      legend: { display: false },
+                      scales: {
+                        yAxes: [{
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Median House Price($)'
+                          }
+
+
+                        }]
+                      }
+                    }
+            })
+
+            // Multiple line chart(recreation category-bars, chinese restaurants, ice cream stores, bike trails)
+            new Chart(document.getElementById("recreation"), {
+              type: 'line',
+              data: {
+                labels: ["Austin","Boise","Boston","Charlotte","Colorado","Dallas", "Denver", "De Moines", "Fayettsville", "Grand Rapids", "Houston", "Madison", "Minneapolis", "Nashville", "Raleigh", "Salt Lake City", "San Francisco","San Jose", "Seattle", "WashingtonDC"],
+                datasets: [{ 
+                    data: [199, 193, 200, 193, 179, 199, 197, 167, 197, 189, 191, 186, 197, 195, 192, 200, 200, 187, 194, 199],
+                    label: "Bars",
+                    borderColor: "#3e95cd",
+                    fill: false
+                  }, { 
+                    data: [173, 174, 194, 156, 160, 149, 187, 163, 154, 139, 174, 150, 170, 152, 148, 177, 199, 167, 181, 181],
+                    label: "Chinese Restaurants",
+                    borderColor: "orange",
+                    fill: false
+                  }, { 
+                    data: [154, 129, 171, 122, 125, 154, 148, 121, 75, 116, 163, 111, 110, 148, 116, 124, 163, 132, 157, 185],
+                    label: "Ice Cream Stores",
+                    borderColor: "#3cba9f",
+                    fill: false
+                  }, { 
+                    data: [105, 41, 38, 28, 42, 29, 66, 23, 26, 42, 54, 54, 60, 30, 18, 63, 45, 43, 49, 69],
+                    label: "Bike Trails",
+                    borderColor: "red",
+                    fill: false
+
+                  }
+                ]
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: 'Number of Recreation Spots in Various Cities'
+                },
+                  scales: {
+                        yAxes: [{
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Count'
+                          }
+                        }]
+                      }
+              }
+            });
+
+
+
+
+        </script>
+    </body>
+</html>
